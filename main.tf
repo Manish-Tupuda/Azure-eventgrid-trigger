@@ -1,6 +1,6 @@
 
 data "azurerm_resource_group" "sample" {
-  name     = "woordurff_Sawyer"
+  name     = "Manish"
   
   /*tags = {
     sample = "azure-functions-event-grid-terraform"
@@ -10,7 +10,7 @@ data "azurerm_resource_group" "sample" {
 resource "azurerm_eventgrid_topic" "sample_topic" {
   name                = "${var.prefix}-azsam-egt"
   location            = var.location
-  resource_group_name = "woordurff_Sawyer"
+  resource_group_name = "Manish"
   tags = {
     sample = "azure-functions-event-grid-terraform"
   }
@@ -19,7 +19,7 @@ resource "azurerm_eventgrid_topic" "sample_topic" {
 resource "azurerm_application_insights" "logging" {
   name                = "${var.prefix}-ai"
   location            = var.location
-  resource_group_name = "woordurff_Sawyer"
+  resource_group_name = "Manish"
   application_type    = "web"
   retention_in_days   = 90
   tags = {
@@ -29,7 +29,7 @@ resource "azurerm_application_insights" "logging" {
 
 resource "azurerm_storage_account" "inbox" {
   name                      = "${var.prefix}inboxsa"
-  resource_group_name       = "woordurff_Sawyer"
+  resource_group_name       = "Manish"
   location                  = var.location
   account_tier              = "Standard"
   account_replication_type  = "LRS"
@@ -78,7 +78,7 @@ data "azurerm_storage_account_blob_container_sas" "storage_account_blob_containe
 resource "azurerm_app_service_plan" "fxnapp" {
   name                = "${var.prefix}-fxn-plan"
   location            = var.location
-  resource_group_name = "woordurff_Sawyer"
+  resource_group_name = "Manish"
   kind                = "functionapp"
   sku {
     tier = "Dynamic"
@@ -93,7 +93,7 @@ resource "azurerm_app_service_plan" "fxnapp" {
 resource "azurerm_function_app" "fsn" {
   name                       = "${var.prefix}-fxn"
   location                   = var.location
-  resource_group_name        = "woordurff_Sawyer"
+  resource_group_name        = "Manish"
   app_service_plan_id        = azurerm_app_service_plan.fxnapp.id
   //storage_account_name       = azurerm_storage_account.fxnstor.name
   //storage_account_access_key = azurerm_storage_account.fxnstor.primary_access_key
@@ -147,7 +147,7 @@ resource "azurerm_eventgrid_event_subscription" "eventgrid_subscription" {
   labels = ["azure-functions-event-grid-terraform"]
   azure_function_endpoint {
     //function_id = "azurerm_function_app.fsn.id/functions/EventGridTrigger1.eventGridFunctionName"
-    //function_id = "/subscriptions/28576802-f8de-468d-97c1-db184a0f64e9/resourceGroups/woordurff_Sawyer/providers/Microsoft.Web/sites/newfsz-fxn/functions/EventGridTrigger1.eventGridFunctionName"
+    //function_id = "/subscriptions/28576802-f8de-468d-97c1-db184a0f64e9/resourceGroups/Manish/providers/Microsoft.Web/sites/newfsz-fxn/functions/EventGridTrigger1.eventGridFunctionName"
     function_id = "${azurerm_function_app.fsn.id}/functions/${var.eventGridFunctionName}"
 
     # defaults, specified to avoid "no-op" changes when 'apply' is re-ran
